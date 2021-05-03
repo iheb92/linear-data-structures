@@ -1,0 +1,68 @@
+ Prob_Solution1
+
+VAR
+    Set1 : ARRAY_OF INTEGER[4];// declaring the array and define its length.
+    Set2 : ARRAY_OF INTEGER[4]; 
+    i,j,sum-unique ,sum-duplicates : INTEGER; // declaring the index for each element in the array.
+BEGIN
+    // Init of the diff var
+    Set1 := {12, 13, 6, 10} ; // inserting the elements directly in the array.
+    Set2 := {13, 10, 16, 15};
+    i := 0;
+    j := 0;
+    sum-unique := 0;
+    sum-duplicates := 0;
+FOR i FROM 0 TO Set1.length-1 STEP 1  DO // the index of arrays start from 0;
+    FOR j FROM 0 TO Set2.length-1 STEP 1  DO // the index of arrays start from 0;
+        IF (Set1[i]<>Set2[j]) THEN
+            sum-unique+=Set1[i] + Set2[j];
+        ELSE
+            sum-duplicates+=Set1[i];
+        END_IF
+    END_FOR
+END_FOR
+Write ("The sum of unique element is : sum-unique");
+Write ("The sum of duplicate element is : sum-duplicates");
+END
+
+
+
+   Prob_Solution2
+VAR
+    // declaring hash table HASH_TABLE<Key_type,Value_type>
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    Set1 : ARRAY_OF INTEGER[4];// declaring the array and define its length.
+    Set2 : ARRAY_OF INTEGER[4]; 
+    i,j,count,sum-unique,sum-duplicates: INTEGER; // declaring the index for each element in the array.
+BEGIN
+    // Init of the diff var
+    Set1 := {12, 13, 6, 10} ; // inserting the elements directly in the array.
+    Set2 := {13, 10, 16, 15};
+    i := 0;
+    j := 0;
+    sum-unique := 0;
+    sum-duplicates := 0;
+FOR i FROM 0 TO Set1.length-1 STEP 1  DO // the index of arrays start from 0;
+    FOR j FROM 0 TO Set1.length-1 STEP 1  DO // the index of arrays start from 0;
+       IF (htab.lookup(Str1[i]) = TRUE) THEN
+           count := htab.get(Str1[i]);
+           htab.insert(Str1[i],count+1);
+       ELSE
+           htab.insert(Str1[i],1);
+           htab.insert(Str2[j],1);
+       END_IF
+    END_FOR
+END_FOR
+
+FOR i FROM 0 TO Set1.length-1 STEP 1  DO
+    FOR j FROM 0 TO Set1.length-1 STEP 1  DO 
+       IF (htab.get(str[i]) >= 2) THEN
+            sum-duplicates+=Set1[i];
+       ELSE
+            sum-unique+=Set1[i] + Set2[j];
+       END_IF
+    END_FOR
+END_FOR
+Write ("The sum of unique element is : sum-unique");
+Write ("The sum of duplicate element is : sum-duplicates");
+END
